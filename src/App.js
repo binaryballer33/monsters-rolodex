@@ -13,11 +13,13 @@ class App extends Component {
       monsters: []
     };
 
+    console.log('1')
   }
 
   // mounted is when the component is first placed(mounted) on the DOM
   // this is a good place to add api fetches that need to be there on page load
   componentDidMount() {
+    console.log('3')
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((response) => response.json())
       .then((users) => 
@@ -33,6 +35,7 @@ class App extends Component {
   }
 
   render () {
+    console.log('2 & 4')
     return (
       <div className="App">
         {this.state.monsters.map((monster) => {

@@ -110,7 +110,11 @@ Once the webpage load, React has all the code and can intelligently CRUD compone
 mounted is when the component is first placed(mounted) on the DOM  
 this is a good place to add api fetches that need to be there on page load
 
-### Renders & Re-renders in React
+### Renders & Re-renders in React w/ class components
+- Constructor runs first, all you really need to do initialize the state in the ctor
+- render() method runs second, mounts the jsx to the DOM determines how the UI will look
+- componentDidMount() Lifecycle method will run 3rd
+- state changes so render() re-renders 
 
 
 
