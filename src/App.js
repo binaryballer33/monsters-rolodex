@@ -9,7 +9,7 @@ class App extends Component {
 
     // state is always a json object
     this.state = {
-      name : 'Shaquille'
+      name : 'Shaq'
     }
 
   }
@@ -20,7 +20,13 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>Hi {this.state.name}</p>
-          <button>Change Name</button>
+          <button 
+            onClick={() => {
+              this.setState({ name: 'Shaquille' });
+            }}
+          >
+              Change Name
+          </button>
         </header>
       </div>
     );
