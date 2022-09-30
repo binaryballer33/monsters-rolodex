@@ -1,20 +1,25 @@
 # React Notes
 
-### React Re-Rendering
+### Renders & Re-renders in React w/ class components
 React only re-renders under certain conditions  
 >- `State Change` ( just because you update a key, value in the state, doesn't mean the state changes, it's still the same object in memory )  
-When you use this.setState it forces the javascript to create a new object in memeory, therefore changing the state, causing a re-render  
+When you use this.setState it forces the javascript to create a new object in memory, therefore changing the state, causing a re-render  
 
+- Constructor runs first, all you really need to do initialize the state in the ctor
+- render() method runs second, mounts the jsx to the DOM determines how the UI will look
+- componentDidMount() Lifecycle method will run 3rd
+- state changes so render() re-renders 
 
-### Render method and Javascript and XML(Jsx)
-added `render()` method, converted app from a `function` to a `class` and made app `extend Component`
-returned jsx inside of the `render()`  
+### Render method and Javascript and XML(Jsx) for Class Components
+Class Components use `render()` method and `extend Component`
+returns jsx inside of the `render()` method 
 
-you can create state using class components by creating a json object and setting its key, value properties  
+you can create state for class components by creating a json object and setting its key, value properties  
 
 you can assess the state by using `{}` and inside of the curly brackets `{this.state.keyName}`  
 
 ### Strict equality with objects in javascript example
+```
 const obj1 = { name: 'Shaquille' }\
 const obj2 = obj1\
 obj1 === obj2 --> ( This is true, because they point to the same place in memory )
@@ -28,7 +33,8 @@ const obj4 = { name: 'Shaquille' }\
 obj1 === obj4 --> ( This is false, because you created a completely different object in memory )
 
 this.state.name = 'Shaquille' --> ( this will not update the state )  
-this.setState({ name: 'Shaquille' }) --> ( this will update the state )  
+this.setState({ name: 'Shaquille' }) --> ( this will update the state )
+```  
 
 ### Using object destructuring with setState  
 > this.state = { name: { firstName: 'Shaquille', lastName: 'Mandy' }, company: 'Amazon'}  
@@ -109,15 +115,6 @@ Once the webpage load, React has all the code and can intelligently CRUD compone
 ### Lifecycle Method: componentDidMount
 mounted is when the component is first placed(mounted) on the DOM  
 this is a good place to add api fetches that need to be there on page load
-
-### Renders & Re-renders in React w/ class components
-- Constructor runs first, all you really need to do initialize the state in the ctor
-- render() method runs second, mounts the jsx to the DOM determines how the UI will look
-- componentDidMount() Lifecycle method will run 3rd
-- state changes so render() re-renders 
-
-
-
 
 ### Input Search Box Component and Array.filter()
 filter loops through each element, if the condition is true it keeps the element in the array  
