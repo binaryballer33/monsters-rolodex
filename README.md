@@ -182,3 +182,5 @@ Example of using Array.filter()
 
 - Lesson [42. Monsters Rolodex - Storing Original Data](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30554086#overview)
 
+
+- Lesson [43. Monsters Rolodex - Optimizations](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30554088#overview)

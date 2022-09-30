@@ -29,12 +29,29 @@ class App extends Component {
       );
   }
 
+  // moved this function here for efficiency, so that it is not re-created on every render 
+  onSearchChange = (event) => {
+    // event.target.value contains the text inside of the search box
+    // make the search case insensitive
+    const searchField = event.target.value.toLocaleLowerCase();
+
+    this.setState((state, props) => {
+      return { searchField: searchField };
+      // could also write this as return { searchField };
+    }) 
+  }
+
   render () {
+    // destructuring in order to shorten variable names by not having to use this.state
+    const { monsters, searchField } = this.state;
+    const { onSearchChange } = this;
+
+
     // filter loops through each element, if the condition is true it keeps the element in the array
     // if the condition is false it removes the element from the array
     // array.filter() returns a new array
-    const filteredMonsters = this.state.monsters.filter((monster) => {
-      return monster.name.toLocaleLowerCase().includes(this.state.searchField);
+    const filteredMonsters = monsters.filter((monster) => {
+      return monster.name.toLocaleLowerCase().includes(searchField);
     });
 
     return (
@@ -43,17 +60,7 @@ class App extends Component {
           className='search-box' 
           type='search' 
           placeholder='search monsters' 
-          onChange={(event) => {
-            // event.target.value contains the text inside of the search box
-            // make the search case insensitive
-            const searchField = event.target.value.toLocaleLowerCase();
-
-            this.setState((state, props) => {
-              return { searchField: searchField };
-              // could also write this as return { searchField };
-            })
-            
-          }}
+          onChange={onSearchChange}
         />
 
         {filteredMonsters.map((monster) => {
