@@ -118,6 +118,42 @@ this is a good place to add api fetches that need to be there on page load
 
 
 
+
+### Input Search Box Component and Array.filter()
+filter loops through each element, if the condition is true it keeps the element in the array  
+if the condition is false it removes the element from the array  
+Because Array.filter() modifies the array in place it's best practice to create a new array  
+
+Example of using Array.filter()
+```
+<input 
+    className='search-box' 
+    type='search' 
+    placeholder='search monsters' 
+    onChange={(event) => {
+    // event.target.value contains the text inside of the search box
+    // make the search case insensitive
+    const searchString = event.target.value.toLocaleLowerCase();
+    
+    // filter loops through each element, if the condition is true it keeps the element in the array
+    // if the condition is false it removes the element from the array
+    // array.filter() returns a new array
+    const filteredMonsters = this.state.monsters.filter((monster) => {
+        return monster.name.toLocaleLowerCase().includes(searchString);
+    });
+
+    this.setState((state, props) => {
+        return { monsters: filteredMonsters };
+    })
+    
+    }}
+/>
+```
+
+
+
+
+
 ## Links
 
 [Json Place Holder Users Api](https://jsonplaceholder.typicode.com/users)
@@ -141,4 +177,11 @@ this is a good place to add api fetches that need to be there on page load
 
 - Lesson [36. Monsters Rolodex - Lifecycle Method: componentDidMount](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30554074#overview) 
 
-- Lesson [36. Monsters Rolodex - Renders & Re-renders in React](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30554078#overview)
+- Lesson [38. Monsters Rolodex - Renders & Re-renders in React](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30554078#overview)
+
+- Lesson [39. Monsters Rolodex - Input Search Box Component](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30554080#overview)
+
+- Lesson [40. Monsters Rolodex - Searching & Filtering](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30554082#overview)
+
+- Lesson [42. Monsters Rolodex - Storing Original Data](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30554086#overview)
+
