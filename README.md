@@ -4,6 +4,7 @@
 React only re-renders under certain conditions  
 >- `State Change` ( just because you update a key, value in the state, doesn't mean the state changes, it's still the same object in memory )  
 When you use this.setState it forces the javascript to create a new object in memory, therefore changing the state, causing a re-render  
+>- `Properties Change` Whenever a prop is change, React will re-render  
 
 - Constructor runs first, all you really need to do initialize the state in the ctor
 - render() method runs second, mounts the jsx to the DOM determines how the UI will look
@@ -182,5 +183,12 @@ Example of using Array.filter()
 
 - Lesson [42. Monsters Rolodex - Storing Original Data](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30554086#overview)
 
-
 - Lesson [43. Monsters Rolodex - Optimizations](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30554088#overview)
+
+- Lesson [44. Monsters Rolodex - Understanding Components](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30572408#overview)
+
+- Lesson [45. Monsters Rolodex - CardList Component](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30572416#overview)
+
+- Lesson [46. Monsters Rolodex - Component Props](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30572424#overview)
+
+- Lesson [47. Monsters Rolodex - Rendering and Re-rendering part 2](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30572430#overview)
