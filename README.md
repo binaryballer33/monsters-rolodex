@@ -11,6 +11,45 @@ When you use this.setState it forces the javascript to create a new object in me
 - componentDidMount() Lifecycle method will run 3rd
 - state changes so render() re-renders 
 
+### Class Components V.S. Functional Components
+
+#### Class Components: 
+- Uses Contructors, Lifecycle methods  
+- has a render() method, with a return statement inside of the render() method  
+- this.state is created usually inside of the Constructor as a json object  
+
+#### Functional Components: 
+- Uses arrow functions, hooks( replaces Lifecycle methods )    
+- doesn't have a render() method or Lifecycle methods  
+- Need to understand functions, pure functions, impure functions and side effects to completely understand the way React handles functional components
+- We will be writing Impure Functions in React by using Hooks
+- Pure Function ( the return value is determines solely by calculations done inside of the function )
+  - returns the same thing, everytime if given the same arguments
+  - ``` 
+    const pureFunction = (a, b) => {
+      return a + b;
+    }
+    ```  
+- Impure Function ( the return value isn't determines solely by calculations done inside of the function, there's outside interference )
+  - relies on some external value so there's a POSSIBILITY that it won't return the same thing event with the same arguments
+  - ``` 
+    // what if c changes, then this function will not return the same thing even though the args haven't changed
+    const c = 3
+    const impureFunction = (a, b) => {
+      return a + b + c;
+    }
+    ```  
+- Side Effects ( This is when a function creates some kind of effect outside of its scope )
+  - could change a value of something that lives outside of its scope
+  - ``` 
+    const c = 3
+    const sideEffects = (a, b) => {
+      // this function changes the value of c ( a variable that lives outside of its scope )
+      c = a + b
+      return a * b;
+    }
+    ```
+
 ### Render method and Javascript and XML(Jsx) for Class Components
 Class Components use `render()` method and `extend Component`
 returns jsx inside of the `render()` method 
@@ -156,6 +195,10 @@ Example of using Array.filter()
 
 [Json Place Holder Users Api](https://jsonplaceholder.typicode.com/users)
 
+[Monster Images](https://robohash.org/1?set=set2)
+
+[Lifecycle Methods Diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
+
 ### Udemy Course  
 [Complete React Developer Zero To Mastery](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/)
 
@@ -200,3 +243,13 @@ Example of using Array.filter()
 - Lesson [50. Monsters Rolodex - CardList Component](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30574780#overview)
 
 - Lesson [52. Monsters Rolodex - Finishing Touches](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30576990#overview)
+
+- Lesson [53. Functional vs Class Components](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30577128#overview)
+
+- Lesson [54. Class Component Lifecycle Methods Breakdown](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30588780#overview)
+
+- Lesson [55. Monsters Rolodex - Functional Component Intro](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30588796#overview)
+
+- Lesson [56. Pure & Impure Functions](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30588894#overview)
+
+- Lesson [57. Monsters Rolodex - Hooks: useState](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30649076#overview)
