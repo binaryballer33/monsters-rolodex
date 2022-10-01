@@ -198,3 +198,5 @@ Example of using Array.filter()
 - Lesson [49. Monsters Rolodex - CSS in React](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30574736#overview)
 
 - Lesson [50. Monsters Rolodex - CardList Component](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30574780#overview)
+
+- Lesson [52. Monsters Rolodex - Finishing Touches](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30576990#overview)

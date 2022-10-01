@@ -3,7 +3,8 @@ import './card.styles.css';
 
 class Card extends Component {
     render() {
-        const { name, email, id } = this.props;
+        // destructuring inside of the map function for readability
+        const { name, email, id } = this.props.monster;
 
         return (
             <div className="card-container" key={id}>
