@@ -49,6 +49,8 @@ When you use this.setState it forces the javascript to create a new object in me
       return a * b;
     }
     ```
+- You don't store whole state objects in memory anymore for functional components, you use the useState() hook 
+    - const [searchField, setSearchField] = useState(''); // [ value, setValue]
 
 ### Render method and Javascript and XML(Jsx) for Class Components
 Class Components use `render()` method and `extend Component`
