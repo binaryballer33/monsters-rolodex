@@ -165,6 +165,27 @@ Once the webpage load, React has all the code and can intelligently CRUD compone
 mounted is when the component is first placed(mounted) on the DOM  
 this is a good place to add api fetches that need to be there on page load
 
+### Hooks: useEffect
+- Don't use setStateValue inside of a Fetch call because it will cause a `INFINITE RE-RENDER LOOP`
+  - RETURNING AN ARRAY W/ A DIFFERENT MEMORY LOCATION EVERYTIME IT FETCHES  
+    EVEN THOUGH THE VALUES ARE THE SAME IN THE ARRAY IT UPDATES STATE BC THE MEMORY LOCATION IS DIFFERENT
+
+#### To Fix This Side Effect Caused By The Fetch Call We Use useEffect Hook
+- ```
+    // The 1st Arg is a Callback function, and it runs onces automatically upon mounting the component
+    // 2nd Arg is a Array of Dependencies Array of Dependencies is usually a state or prop value
+    // and if it changes it will run the 1st Arg Callback Function
+    // because we don't ever want this Fetch call to re-run we won't put anything in the array of dependencies
+    // this way the Fetch will never get re-ran from the 1st arg callback function, because there are no values
+    // to update in the array of dependencies, if you only want something to run once, set array of dependencies to a empty array []
+
+    useEffect(() => {
+      fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((users) =>  setMonsters(users));
+    }, []);
+  ```
+
 ### Input Search Box Component and Array.filter()
 filter loops through each element, if the condition is true it keeps the element in the array  
 if the condition is false it removes the element from the array  
@@ -266,3 +287,7 @@ Example of using Array.filter()
 - Lesson [58. Monsters Rolodex - Functional Component Re-rendering](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30649088#overview)
 
 - Lesson [59. Monsters Rolodex - Infinite Re-rendering](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30649096#overview)
+
+- Lesson [60. Monsters Rolodex - Hooks: useEffect](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30649106#overview)
+
+- Lesson [61. Monsters Rolodex - Remaining Components](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30649116#overview)
