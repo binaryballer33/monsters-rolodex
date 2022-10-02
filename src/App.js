@@ -1,22 +1,33 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SearchBox from './components/search-box/search-box.component';
 import CardList from './components/card-list/card-list.component';
 import './App.css';
 
 const App = () => {
+  console.log('rendering')
     // using array destructuring
     // you don't store whole state objects in memory anymore for functional components
     // you use the useState() hook 
     const [searchField, setSearchField] = useState(''); // [ value, setValue]
-    console.log({searchField: searchField})
+    const [monsters, setMonsters] = useState([]) // initialize monsters to a empty array like before
 
-    // moved this function here for efficiency, so that it is not re-created on every render 
+    // THIS WILL CAUSE A INFINITE RE-RENDER LOOP DUE TO THE FETCH CALL 
+    // RETURNING A ARRAY W/ A DIFFERENT MEMORY LOCATION EVERYTIME IT FETCHES
+    // EVEN THOUGH THE VALUES ARE THE SAME IN THE ARRAY IT UPDATES STATE BC THE MEMORY LOCATION IS DIFFERENT
+    // fetch('https://jsonplaceholder.typicode.com/users')
+    //   .then((response) => response.json())
+    //   .then((users) =>  setMonsters(users));
+
     const onSearchChange = (event) => {
       // event.target.value contains the text inside of the search box
       // make the search case insensitive
       const searchFieldString = event.target.value.toLocaleLowerCase();
       setSearchField(searchFieldString);
     }
+
+    const filteredMonsters = monsters.filter((monster) => {
+      return monster.name.toLocaleLowerCase().includes(searchField);
+    });
 
   return (
     <div className="App">
@@ -27,7 +38,7 @@ const App = () => {
         placeholder={"search monsters"}
       />
 
-      {/* <CardList monsters={filteredMonsters}/> */}
+      <CardList monsters={filteredMonsters}/>
     </div>
   )
 }

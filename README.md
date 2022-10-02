@@ -1,6 +1,6 @@
 # React Notes
 
-### Renders & Re-renders in React w/ class components
+### Renders & Re-renders in React w/ Class components
 React only re-renders under certain conditions  
 >- `State Change` ( just because you update a key, value in the state, doesn't mean the state changes, it's still the same object in memory )  
 When you use this.setState it forces the javascript to create a new object in memory, therefore changing the state, causing a re-render  
@@ -9,7 +9,14 @@ When you use this.setState it forces the javascript to create a new object in me
 - Constructor runs first, all you really need to do initialize the state in the ctor
 - render() method runs second, mounts the jsx to the DOM determines how the UI will look
 - componentDidMount() Lifecycle method will run 3rd
-- state changes so render() re-renders 
+- state changes so render() re-renders  
+
+### Renders & Re-renders in React w/ Functional components
+- unlike with Class components, you can't expect a re-render just be using this.setState
+- With Functional components the setStateValue() method doesn't cause a re-render, only re-renders if the value is actually different
+- There is no Render() method inside of a Functional component, you can look at the whole function as the Render() method
+- When state or props change, it will caused a re-render just like with Class components
+- When a re-render happens in a Functional component, it runs all the code in the Functional component 'top down'
 
 ### Class Components V.S. Functional Components
 
@@ -255,3 +262,7 @@ Example of using Array.filter()
 - Lesson [56. Pure & Impure Functions](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30588894#overview)
 
 - Lesson [57. Monsters Rolodex - Hooks: useState](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30649076#overview)
+
+- Lesson [58. Monsters Rolodex - Functional Component Re-rendering](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30649088#overview)
+
+- Lesson [59. Monsters Rolodex - Infinite Re-rendering](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30649096#overview)
