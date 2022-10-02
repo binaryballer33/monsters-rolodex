@@ -26,7 +26,9 @@ When you use this.setState it forces the javascript to create a new object in me
 - this.state is created usually inside of the Constructor as a json object  
 
 #### Functional Components: 
-- Uses arrow functions, hooks( replaces Lifecycle methods )    
+- Uses arrow functions, hooks( replaces Lifecycle methods )  
+- Functional components can take in props as Arg 1 and forwardRef as Arg 2
+-     
 - doesn't have a render() method or Lifecycle methods  
 - Need to understand functions, pure functions, impure functions and side effects to completely understand the way React handles functional components
 - We will be writing Impure Functions in React by using Hooks
