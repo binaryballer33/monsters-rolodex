@@ -1,6 +1,6 @@
 # React Notes
 
-### Renders & Re-renders in React w/ class components
+### Renders & Re-renders in React w/ Class components
 React only re-renders under certain conditions  
 >- `State Change` ( just because you update a key, value in the state, doesn't mean the state changes, it's still the same object in memory )  
 When you use this.setState it forces the javascript to create a new object in memory, therefore changing the state, causing a re-render  
@@ -9,7 +9,71 @@ When you use this.setState it forces the javascript to create a new object in me
 - Constructor runs first, all you really need to do initialize the state in the ctor
 - render() method runs second, mounts the jsx to the DOM determines how the UI will look
 - componentDidMount() Lifecycle method will run 3rd
-- state changes so render() re-renders 
+- state changes so render() re-renders  
+
+### Renders & Re-renders in React w/ Functional components
+- unlike with Class components, you can't expect a re-render just be using this.setState
+- With Functional components the setStateValue() method doesn't cause a re-render, only re-renders if the value is actually different
+- There is no Render() method inside of a Functional component, you can look at the whole function as the Render() method
+- When state or props change, it will caused a re-render just like with Class components
+- When a re-render happens in a Functional component, it runs all the code in the Functional component 'top down'
+
+### Class Components V.S. Functional Components
+
+#### Class Components: 
+- Uses Contructors, Lifecycle methods  
+- has a render() method, with a return statement inside of the render() method  
+- this.state is created usually inside of the Constructor as a json object  
+
+#### Functional Components: 
+- Uses arrow functions, hooks( replaces Lifecycle methods )  
+- Functional components can take in props as Arg 1 and forwardRef as Arg 2
+```
+// functional components can take in props as Arg 1 and forwardRef as Arg 2
+const CardList = (props, forwardRef) => {
+  // 1st way of destructuring props, you can also do it from the props arg
+  const { monsters } = props;
+
+  return (
+      <div className="card-list">
+        {monsters.map((monster) => {
+          return <Card monster={monster} />;
+        })}  
+      </div>
+  )
+}
+```    
+- doesn't have a render() method or Lifecycle methods  
+- Need to understand functions, pure functions, impure functions and side effects to completely understand the way React handles functional components
+- We will be writing Impure Functions in React by using Hooks
+- Pure Function ( the return value is determines solely by calculations done inside of the function )
+  - returns the same thing, everytime if given the same arguments
+  - ``` 
+    const pureFunction = (a, b) => {
+      return a + b;
+    }
+    ```  
+- Impure Function ( the return value isn't determines solely by calculations done inside of the function, there's outside interference )
+  - relies on some external value so there's a POSSIBILITY that it won't return the same thing event with the same arguments
+  - ``` 
+    // what if c changes, then this function will not return the same thing even though the args haven't changed
+    const c = 3
+    const impureFunction = (a, b) => {
+      return a + b + c;
+    }
+    ```  
+- Side Effects ( This is when a function creates some kind of effect outside of its scope )
+  - could change a value of something that lives outside of its scope
+  - ``` 
+    const c = 3
+    const sideEffects = (a, b) => {
+      // this function changes the value of c ( a variable that lives outside of its scope )
+      c = a + b
+      return a * b;
+    }
+    ```
+- You don't store whole state objects in memory anymore for functional components, you use the useState() hook 
+    - const [searchField, setSearchField] = useState(''); // [ value, setValue]
 
 ### Render method and Javascript and XML(Jsx) for Class Components
 Class Components use `render()` method and `extend Component`
@@ -117,6 +181,27 @@ Once the webpage load, React has all the code and can intelligently CRUD compone
 mounted is when the component is first placed(mounted) on the DOM  
 this is a good place to add api fetches that need to be there on page load
 
+### Hooks: useEffect
+- Don't use setStateValue inside of a Fetch call because it will cause a `INFINITE RE-RENDER LOOP`
+  - RETURNING AN ARRAY W/ A DIFFERENT MEMORY LOCATION EVERYTIME IT FETCHES  
+    EVEN THOUGH THE VALUES ARE THE SAME IN THE ARRAY IT UPDATES STATE BC THE MEMORY LOCATION IS DIFFERENT
+
+#### To Fix This Side Effect Caused By The Fetch Call We Use useEffect Hook
+- ```
+    // The 1st Arg is a Callback function, and it runs onces automatically upon mounting the component
+    // 2nd Arg is a Array of Dependencies Array of Dependencies is usually a state or prop value
+    // and if it changes it will run the 1st Arg Callback Function
+    // because we don't ever want this Fetch call to re-run we won't put anything in the array of dependencies
+    // this way the Fetch will never get re-ran from the 1st arg callback function, because there are no values
+    // to update in the array of dependencies, if you only want something to run once, set array of dependencies to a empty array []
+
+    useEffect(() => {
+      fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((users) =>  setMonsters(users));
+    }, []);
+  ```
+
 ### Input Search Box Component and Array.filter()
 filter loops through each element, if the condition is true it keeps the element in the array  
 if the condition is false it removes the element from the array  
@@ -155,6 +240,10 @@ Example of using Array.filter()
 ## Links
 
 [Json Place Holder Users Api](https://jsonplaceholder.typicode.com/users)
+
+[Monster Images](https://robohash.org/1?set=set2)
+
+[Lifecycle Methods Diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 
 ### Udemy Course  
 [Complete React Developer Zero To Mastery](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/)
@@ -200,3 +289,21 @@ Example of using Array.filter()
 - Lesson [50. Monsters Rolodex - CardList Component](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30574780#overview)
 
 - Lesson [52. Monsters Rolodex - Finishing Touches](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30576990#overview)
+
+- Lesson [53. Functional vs Class Components](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30577128#overview)
+
+- Lesson [54. Class Component Lifecycle Methods Breakdown](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30588780#overview)
+
+- Lesson [55. Monsters Rolodex - Functional Component Intro](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30588796#overview)
+
+- Lesson [56. Pure & Impure Functions](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30588894#overview)
+
+- Lesson [57. Monsters Rolodex - Hooks: useState](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30649076#overview)
+
+- Lesson [58. Monsters Rolodex - Functional Component Re-rendering](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30649088#overview)
+
+- Lesson [59. Monsters Rolodex - Infinite Re-rendering](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30649096#overview)
+
+- Lesson [60. Monsters Rolodex - Hooks: useEffect](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30649106#overview)
+
+- Lesson [61. Monsters Rolodex - Remaining Components](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/30649116#overview)
