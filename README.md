@@ -28,7 +28,6 @@ When you use this.setState it forces the javascript to create a new object in me
 #### Functional Components: 
 - Uses arrow functions, hooks( replaces Lifecycle methods )  
 - Functional components can take in props as Arg 1 and forwardRef as Arg 2
-- 
 ```
 // functional components can take in props as Arg 1 and forwardRef as Arg 2
 const CardList = (props, forwardRef) => {
